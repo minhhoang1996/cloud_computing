@@ -9,5 +9,7 @@
 * Transfer files to Linux instances using an SCP client<br>
 `scp -i key_pair/hoang-example.pem source/file ubuntu@ec2-54-163-162-99.compute-1.amazonaws.com:/home/ubuntu`
 
-
+Command to run example:
+cd source\boto3\manage_EC2_instance
+python.exe .\lesson1.py
 
