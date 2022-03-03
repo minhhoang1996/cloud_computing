@@ -11,10 +11,27 @@ class DemoEc2:
                                 aws_secret_access_key=secret_access_key,
                                 region_name=region)
 
+    def get_vpc_id(self):
+        response = self.ec2.describe_vpcs()
+        vpc_id = response.get('Vpcs', [{}])[0].get('VpcId', '')
+        return vpc_id
+
     def get_instance_id(self):
+        response = self.describe_instance()
+        return response.get("Reservations")[0].get("Instances")[0].get("InstanceId")
+
+    def get_groups(self):
+        groups = {}
+        for group in range(len(self.ec2.describe_security_groups().get("SecurityGroups"))):
+            sg_name = self.ec2.describe_security_groups().get("SecurityGroups")[group].get("GroupName")
+            sg_id = self.ec2.describe_security_groups().get("SecurityGroups")[group].get("GroupId")
+
+            groups[sg_name] = sg_id
+        return groups
+
+    def describe_instance(self):
         response = self.ec2.describe_instances()
-        instance_id = response["Reservations"][0]["Instances"][0]["InstanceId"]
-        return instance_id
+        return response
 
     def monitor_instance(self, state="OFF"):
         # Monitor and unmonitor instances
