@@ -1,4 +1,5 @@
 import boto3
+from configs import configs
 from source.boto3.manage_EC2_instance.lesson1 import DemoEc2
 from botocore.exceptions import ClientError
 
@@ -48,9 +49,9 @@ class SecurityGroup(DemoEc2):
 
 
 if __name__ == "__main__":
-    aws_access_key_id = ""
-    aws_secret_access_key = ""
-    region_name = "us-east-1"
+    aws_access_key_id = configs.access_key_ID
+    aws_secret_access_key = configs.secret_access_key
+    region_name = configs.region_name
     sg_name = "example_sg"
 
     sg = SecurityGroup(aws_access_key_id,

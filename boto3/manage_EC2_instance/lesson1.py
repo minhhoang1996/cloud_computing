@@ -1,5 +1,7 @@
 import boto3
+from configs import configs
 from botocore.exceptions import ClientError
+
 
 class DemoEc2:
     ec2 = None
@@ -90,10 +92,9 @@ class DemoEc2:
 
 
 if __name__ == "__main__":
-    # These information should not be in the code.
-    aws_access_key_id = ""
-    aws_secret_access_key = ""
-    region_name = ""
+    aws_access_key_id = configs.access_key_ID
+    aws_secret_access_key = configs.secret_access_key
+    region_name = configs.region_name
 
     ec2_example = DemoEc2(access_key_id=aws_access_key_id,
                           secret_access_key=aws_secret_access_key,

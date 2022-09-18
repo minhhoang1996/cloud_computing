@@ -1,0 +1,11 @@
+MyEC2Instance: 
+    Type: AWS::EC2::Instance
+    Properties: 
+      ImageId: "ami-0b0af3577fe5e3532"
+      InstanceType: "t2.micro"
+      BlockDeviceMappings:
+        Proprtties:
+          DeviceName: "/dev/sda1"
+          Ebs:
+            Volumesize: 10
+      SecurityGroups: ["my_GS_us_east1"]
